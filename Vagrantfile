@@ -13,8 +13,9 @@ Vagrant.configure(2) do |config|
     v.cpus = 2
   end
 
-  config.vm.define "puppetmaster-precise" do |puppetmaster| 
+  config.vm.define "lampdemo" do |puppetmaster| 
     puppetmaster.vm.box = "ubuntu/precise64"
+    puppetmaster.vm.network "forwarded_port", guest: 80, host: 8080
     puppetmaster.vm.hostname = "lampdemo"
     puppetmaster.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "puppet/manifests"
